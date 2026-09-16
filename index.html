@@ -1,121 +1,741 @@
-from pathlib import Path
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c1117" />
+  <meta name="description" content="สินค้าอุตสาหกรรม อุปกรณ์ระบบอัตโนมัติ และงานสนับสนุนด้านวิศวกรรมจาก Y.O. General 1983" />
+  <meta property="og:title" content="Y.O. General 1983 — สินค้าอุตสาหกรรมและโซลูชันด้านวิศวกรรม" />
+  <meta property="og:description" content="ค้นหาสินค้าอุตสาหกรรม อุปกรณ์ Automation และบริการสนับสนุนทางเทคนิคสำหรับโรงงานและสายการผลิตของคุณ" />
+  <meta property="og:type" content="website" />
+  <title>Y.O. General 1983 — สินค้าอุตสาหกรรมและโซลูชันด้านวิศวกรรม</title>
 
-src = Path("/mnt/data/index.html")
-html = src.read_text(encoding="utf-8")
+  <style>
+    :root{
+      --bg:#f4f5f7;
+      --surface:#ffffff;
+      --surface-2:#f8f9fb;
+      --ink:#10151c;
+      --ink-2:#3f4854;
+      --muted:#707985;
+      --line:#e2e6ea;
+      --line-dark:#2b333d;
+      --dark:#0b1016;
+      --dark-2:#121922;
+      --red:#d92525;
+      --red-2:#b91818;
+      --red-soft:#fff0f0;
+      --green:#20a36a;
+      --radius:22px;
+      --radius-sm:14px;
+      --shadow:0 22px 60px rgba(16,21,28,.08);
+      --container:1200px;
+    }
 
-replacements = {
-    '<html lang="en">':'<html lang="th">',
-    'Industrial products, automation components and engineering support from Y.O. General 1983.':'สินค้าอุตสาหกรรม อุปกรณ์ระบบอัตโนมัติ และงานสนับสนุนด้านวิศวกรรมจาก Y.O. General 1983',
-    'Y.O. General 1983 — Industrial Products & Engineering Solutions':'Y.O. General 1983 — สินค้าอุตสาหกรรมและโซลูชันด้านวิศวกรรม',
-    'Find industrial components, automation products and technical support for your operation.':'ค้นหาสินค้าอุตสาหกรรม อุปกรณ์ Automation และบริการสนับสนุนทางเทคนิคสำหรับโรงงานและสายการผลิตของคุณ',
-    'Industrial products & engineering support':'สินค้าอุตสาหกรรมและงานสนับสนุนด้านวิศวกรรม',
-    'For procurement & engineering teams':'สำหรับฝ่ายจัดซื้อและทีมวิศวกรรม',
-    'Bangkok, Thailand':'กรุงเทพฯ ประเทศไทย',
-    'Y.O. GENERAL 1983':'Y.O. GENERAL 1983',
-    'INDUSTRIAL SOLUTIONS':'INDUSTRIAL SOLUTIONS',
-    '>Products<':'>สินค้า<',
-    '>Brands<':'>แบรนด์<',
-    '>Solutions<':'>โซลูชัน<',
-    '>Services<':'>บริการ<',
-    '>Company<':'>เกี่ยวกับเรา<',
-    'Find a product':'ค้นหาสินค้า',
-    'Request a quote':'ขอใบเสนอราคา',
-    'Industrial supply · engineering support':'สินค้าอุตสาหกรรม · สนับสนุนด้านวิศวกรรม',
-    'Keep your operation ':'ให้สายการผลิตของคุณ ',
-    '<span>moving.</span>':'<span>เดินต่อได้อย่างมั่นใจ</span>',
-    'Find industrial components, automation products and practical technical support\n            for maintenance, upgrades and production projects.':'ค้นหาอุปกรณ์อุตสาหกรรม สินค้า Automation และการสนับสนุนทางเทคนิค\n            สำหรับงานซ่อมบำรุง อัปเกรดเครื่องจักร และโครงการในสายการผลิต',
-    'Explore products':'ดูสินค้าทั้งหมด',
-    'Engineering solutions':'โซลูชันวิศวกรรม',
-    'Technical product support':'ให้คำแนะนำด้านเทคนิค',
-    'Industrial-grade components':'สินค้าเกรดอุตสาหกรรม',
-    'B2B quotation workflow':'ระบบขอใบเสนอราคาแบบ B2B',
-    'Product finder':'ค้นหาสินค้า',
-    'Search by product, brand or model':'ค้นหาจากประเภทสินค้า แบรนด์ หรือรุ่น',
-    'e.g. solenoid valve, Mitsubishi, sensor…':'เช่น Solenoid Valve, Mitsubishi, Sensor…',
-    '>Search<':'>ค้นหา<',
-    'Try searching “automation”, “valve”, “pneumatic” or a brand.':'ลองค้นหา “automation”, “valve”, “pneumatic” หรือชื่อแบรนด์',
-    'Automation & Control':'ระบบอัตโนมัติและการควบคุม',
-    'Pneumatics':'นิวเมติก',
-    'Valves & Flow':'วาล์วและระบบควบคุมการไหล',
-    'Sensors & Instruments':'เซนเซอร์และเครื่องมือวัด',
-    'Built for engineers, maintenance teams and procurement — fewer clicks, faster product discovery.':'ออกแบบสำหรับวิศวกร ทีมซ่อมบำรุง และฝ่ายจัดซื้อ เพื่อให้ค้นหาสินค้าได้เร็วและง่ายขึ้น',
-    'Selected product brands':'แบรนด์สินค้าที่เราคัดสรร',
-    'Product categories':'หมวดหมู่สินค้า',
-    'Find what your line needs.':'ค้นหาสิ่งที่สายการผลิตของคุณต้องการ',
-    'A product-first structure designed to help engineering and purchasing teams\n            move quickly from requirement to the right category.':'โครงสร้างที่เน้นการค้นหาสินค้าเป็นหลัก เพื่อช่วยให้ทีมวิศวกรรมและฝ่ายจัดซื้อ\n            ไปจากความต้องการสู่หมวดสินค้าที่เหมาะสมได้รวดเร็วขึ้น',
-    'Automation & Control':'ระบบอัตโนมัติและการควบคุม',
-    'PLC, HMI, inverter, servo and control components for machine and factory automation.':'PLC, HMI, Inverter, Servo และอุปกรณ์ควบคุมสำหรับระบบอัตโนมัติของเครื่องจักรและโรงงาน',
-    'View category →':'ดูหมวดสินค้า →',
-    'Pneumatics & Hydraulics':'นิวเมติกและไฮดรอลิก',
-    'Motion and pressure-control components for industrial machines and production systems.':'อุปกรณ์ควบคุมการเคลื่อนที่และแรงดันสำหรับเครื่องจักรอุตสาหกรรมและระบบการผลิต',
-    'Valves & Flow Control':'วาล์วและระบบควบคุมการไหล',
-    'Industrial valves, regulators and flow-control products for utilities and process systems.':'วาล์วอุตสาหกรรม เรกูเลเตอร์ และอุปกรณ์ควบคุมการไหลสำหรับระบบ Utility และ Process',
-    'Sensors & Instruments':'เซนเซอร์และเครื่องมือวัด',
-    'Sensing, measurement and monitoring devices for machines, utilities and process control.':'อุปกรณ์ตรวจจับ วัดค่า และมอนิเตอร์สำหรับเครื่องจักร ระบบ Utility และระบบควบคุมกระบวนการ',
-    'Mechanical Components':'อุปกรณ์เครื่องกล',
-    'Supporting machine components for replacement, maintenance and equipment improvement work.':'อุปกรณ์เครื่องกลสำหรับงานเปลี่ยนอะไหล่ ซ่อมบำรุง และปรับปรุงประสิทธิภาพเครื่องจักร',
-    'Maintenance & Service':'งานซ่อมบำรุงและบริการ',
-    'Practical support for replacement, troubleshooting, system improvement and engineering projects.':'สนับสนุนงานเปลี่ยนอะไหล่ ตรวจสอบปัญหา ปรับปรุงระบบ และโครงการด้านวิศวกรรม',
-    'Explore services →':'ดูบริการของเรา →',
-    'Engineering solutions':'โซลูชันด้านวิศวกรรม',
-    'More than component supply.':'มากกว่าการจำหน่ายอุปกรณ์',
-    'The site is structured around the real B2B journey: identify a requirement,\n            shortlist a solution, verify fit and move to quotation.':'เว็บไซต์ถูกออกแบบตามขั้นตอนการจัดซื้อแบบ B2B จริง ตั้งแต่ระบุความต้องการ\n            คัดเลือกโซลูชัน ตรวจสอบความเหมาะสม ไปจนถึงขอใบเสนอราคา',
-    'Engineering workflow':'ขั้นตอนงานวิศวกรรม',
-    'From problem statement to practical product selection.':'จากโจทย์หน้างานสู่การเลือกสินค้าที่ใช้งานได้จริง',
-    'Use category, model and application context to reduce ambiguity before quotation\n              and make technical communication clearer for both sides.':'ใช้ข้อมูลหมวดสินค้า รุ่น และลักษณะการใช้งาน เพื่อช่วยลดความคลาดเคลื่อนก่อนขอราคา\n              และทำให้การสื่อสารด้านเทคนิคชัดเจนขึ้น',
-    'Automation upgrades':'อัปเกรดระบบ Automation',
-    'Component replacement and upgrade paths for production equipment.':'แนวทางเปลี่ยนและอัปเกรดอุปกรณ์สำหรับเครื่องจักรและระบบการผลิต',
-    'Application support':'ให้คำแนะนำตามการใช้งาน',
-    'Organize technical information around your machine, medium and operating conditions.':'จัดข้อมูลทางเทคนิคให้เหมาะกับเครื่องจักร ของไหล และสภาวะการทำงานของคุณ',
-    'How we work':'ขั้นตอนการทำงาน',
-    'A clearer B2B buying journey.':'ขั้นตอนการจัดซื้อ B2B ที่ชัดเจนกว่า',
-    'Designed to make enquiries more complete and reduce unnecessary back-and-forth.':'ออกแบบให้การสอบถามข้อมูลครบถ้วนขึ้น และลดการสื่อสารที่ต้องย้อนกลับไปมา',
-    '01 / SEARCH':'01 / ค้นหา',
-    'Find the category':'ค้นหาหมวดสินค้า',
-    'Start with product type, brand, model number or application.':'เริ่มจากประเภทสินค้า แบรนด์ รุ่น หรือการใช้งาน',
-    '02 / DEFINE':'02 / ระบุความต้องการ',
-    'Share your requirement':'แจ้งความต้องการของคุณ',
-    'Add quantity, specification and operating context where available.':'แจ้งจำนวน สเปก และเงื่อนไขการใช้งานเท่าที่มี',
-    '03 / VERIFY':'03 / ตรวจสอบ',
-    'Confirm suitability':'ตรวจสอบความเหมาะสม',
-    'Review technical fit before the commercial quotation stage.':'ตรวจสอบความเหมาะสมทางเทคนิคก่อนเข้าสู่ขั้นตอนเสนอราคา',
-    '04 / QUOTE':'04 / เสนอราคา',
-    'Move to quotation':'เข้าสู่ขั้นตอนขอใบเสนอราคา',
-    'Receive the commercial response with a clearer product requirement.':'รับข้อมูลเชิงพาณิชย์บนพื้นฐานของความต้องการสินค้าที่ชัดเจนขึ้น',
-    'Have a model number or project requirement?':'มีรุ่นสินค้า หรือมีความต้องการสำหรับโครงการอยู่แล้วหรือไม่?',
-    'Send the product model, quantity and application details. Add your real sales\n              contact to this button before production launch.':'ส่งรุ่นสินค้า จำนวน และรายละเอียดการใช้งานมาให้เรา เพื่อให้ทีมงานสามารถตรวจสอบและจัดทำใบเสนอราคาได้รวดเร็วขึ้น',
-    'Prepare enquiry →':'เตรียมข้อมูลสอบถาม →',
-    'Industrial product discovery, engineering-oriented information architecture\n            and a cleaner path from requirement to quotation.':'ศูนย์รวมสินค้าอุตสาหกรรมและข้อมูลเชิงวิศวกรรม พร้อมเส้นทางที่ชัดเจนตั้งแต่ค้นหาสินค้าไปจนถึงขอใบเสนอราคา',
-    '<h4>Products</h4>':'<h4>สินค้า</h4>',
-    '<h4>Company</h4>':'<h4>บริษัท</h4>',
-    '<h4>For your team</h4>':'<h4>สำหรับทีมของคุณ</h4>',
-    '>Automation<':'>Automation<',
-    '>Pneumatics<':'>Pneumatics<',
-    '>Valves<':'>วาล์ว<',
-    '>Instruments<':'>เครื่องมือวัด<',
-    'Technical workflow':'ขั้นตอนด้านเทคนิค',
-    'All rights reserved.':'สงวนลิขสิทธิ์',
-    'Frontend V2 · Static HTML · Responsive · Cloudflare-ready':'Frontend V2 · Responsive · Cloudflare-ready',
-    '>Menu<':'>เมนู<',
-    'Open menu':'เปิดเมนู',
-    'Close menu':'ปิดเมนู',
-    'Enter a product type, brand or model keyword.':'กรุณากรอกประเภทสินค้า แบรนด์ หรือรุ่นที่ต้องการค้นหา',
-    'Found ${matches.length} relevant ${matches.length === 1 ? \'category\' : \'categories\'} for “${raw.trim()}”.':'พบ ${matches.length} หมวดสินค้าที่เกี่ยวข้องกับ “${raw.trim()}”',
-    'No category match for “${raw.trim()}” yet — connect this UI to your real product catalog next.':'ยังไม่พบหมวดสินค้าที่ตรงกับ “${raw.trim()}” — ขั้นต่อไปสามารถเชื่อมต่อกับแคตตาล็อกสินค้าจริงได้',
-    'Product enquiry — Y.O. General 1983':'สอบถามสินค้า — Y.O. General 1983',
-    '''Hello Y.O. General 1983,
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--bg);
+      font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Noto Sans Thai", Arial, sans-serif;
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    body.menu-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    img,svg{display:block;max-width:100%}
+    .container{width:min(calc(100% - 40px),var(--container));margin-inline:auto}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      text-transform:uppercase;letter-spacing:.14em;font-size:.74rem;font-weight:800;
+      color:var(--red);
+    }
+    .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+    .section{padding:94px 0}
+    .section-head{display:flex;justify-content:space-between;gap:32px;align-items:end;margin-bottom:36px}
+    .section-head h2,.section-copy h2{
+      margin:10px 0 0;font-size:clamp(2rem,4vw,3.35rem);line-height:1.02;letter-spacing:-.045em
+    }
+    .section-head p{max-width:570px;margin:0;color:var(--muted)}
+    .muted{color:var(--muted)}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(255,255,255,.72);font-weight:700;font-size:.82rem
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+    .icon{
+      width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+      background:var(--surface-2);border:1px solid var(--line);color:var(--ink)
+    }
+    .icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8}
 
-I would like to request a quotation.
+    /* Header */
+    .site-header{
+      position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);
+      backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid rgba(226,230,234,.88)
+    }
+    .utility{
+      background:var(--dark);color:#c7cdd5;font-size:.78rem
+    }
+    .utility .container{height:34px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .utility strong{color:#fff}
+    .utility-right{display:flex;gap:22px;align-items:center}
+    .nav{height:76px;display:flex;align-items:center;gap:28px}
+    .brand{display:flex;align-items:center;gap:13px;min-width:max-content}
+    .brand-mark{
+      width:38px;height:38px;border-radius:10px;background:var(--red);position:relative;
+      box-shadow:inset 0 -10px 24px rgba(0,0,0,.08)
+    }
+    .brand-mark::before,.brand-mark::after{
+      content:"";position:absolute;background:#fff;border-radius:1px
+    }
+    .brand-mark::before{width:22px;height:6px;left:8px;top:16px}
+    .brand-mark::after{width:6px;height:22px;left:16px;top:8px}
+    .brand-text{line-height:1.05}
+    .brand-text strong{display:block;font-size:.96rem;letter-spacing:.02em}
+    .brand-text span{display:block;color:var(--muted);font-size:.66rem;letter-spacing:.14em;margin-top:4px}
+    .nav-links{display:flex;align-items:center;gap:26px;margin-left:auto}
+    .nav-links a{font-size:.91rem;font-weight:700;color:#2b333d;transition:.2s}
+    .nav-links a:hover{color:var(--red)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .btn{
+      min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      border-radius:11px;padding:0 17px;border:1px solid transparent;font-weight:800;font-size:.89rem;
+      transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-dark{background:var(--dark);color:#fff}
+    .btn-dark:hover{background:#1a232e}
+    .btn-red{background:var(--red);color:#fff}
+    .btn-red:hover{background:var(--red-2)}
+    .btn-ghost{background:#fff;border-color:var(--line)}
+    .btn-ghost:hover{border-color:#bcc4cc}
+    .menu-toggle{display:none;width:44px;height:44px;border-radius:11px;border:1px solid var(--line);background:#fff}
+    .menu-toggle span{width:18px;height:2px;background:var(--ink);display:block;margin:4px auto}
 
-Product / Model:
-Quantity:
-Application:
-Specifications / Notes:
+    /* Hero */
+    .hero{
+      position:relative;overflow:hidden;background:
+        linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.96) 42%,rgba(244,245,247,.72) 100%),
+        linear-gradient(#e9ecef 1px, transparent 1px),
+        linear-gradient(90deg,#e9ecef 1px, transparent 1px);
+      background-size:auto,34px 34px,34px 34px;
+      border-bottom:1px solid var(--line)
+    }
+    .hero::after{
+      content:"";position:absolute;right:-180px;top:-220px;width:650px;height:650px;border-radius:50%;
+      border:110px solid rgba(217,37,37,.06);pointer-events:none
+    }
+    .hero-grid{
+      min-height:680px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+      gap:64px;align-items:center;padding:74px 0 70px
+    }
+    .hero h1{
+      font-size:clamp(3.35rem,6.2vw,6.4rem);line-height:.92;letter-spacing:-.065em;
+      margin:19px 0 24px;max-width:820px
+    }
+    .hero h1 span{color:var(--red)}
+    .hero-copy{font-size:1.08rem;color:var(--ink-2);max-width:650px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 32px}
+    .hero-actions .btn{min-height:50px;padding-inline:21px}
+    .hero-trust{display:flex;flex-wrap:wrap;gap:12px}
+    .finder{
+      position:relative;z-index:2;background:rgba(11,16,22,.97);color:#fff;border-radius:28px;
+      padding:28px;box-shadow:0 35px 80px rgba(11,16,22,.18);border:1px solid #222c38
+    }
+    .finder-top{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:22px}
+    .finder-top strong{font-size:1.1rem}
+    .finder-label{font-size:.72rem;color:#8e99a6;text-transform:uppercase;letter-spacing:.12em}
+    .finder-search{
+      display:flex;align-items:center;background:#fff;border-radius:13px;overflow:hidden;padding-left:16px
+    }
+    .finder-search svg{width:20px;stroke:#68717c}
+    .finder-search input{
+      width:100%;height:54px;border:0;outline:0;padding:0 12px;color:var(--ink);background:transparent
+    }
+    .finder-search button{
+      align-self:stretch;border:0;background:var(--red);color:#fff;padding:0 18px;font-weight:800
+    }
+    .quick-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+    .quick-link{
+      border:1px solid #293440;background:#111923;border-radius:12px;padding:14px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;color:#dbe0e6;
+      transition:.2s
+    }
+    .quick-link:hover{border-color:#4b5a6a;background:#16202b}
+    .quick-link span{font-size:.88rem;font-weight:700}
+    .quick-link svg{width:17px;stroke:#8793a0}
+    .finder-foot{margin-top:20px;padding-top:18px;border-top:1px solid #27313c;color:#8e99a6;font-size:.78rem}
 
-Company:
-Contact person:
-Phone:
-Email:''':'''เรียน Y.O. General 1983
+    /* Brand rail */
+    .brand-rail{background:#fff;border-bottom:1px solid var(--line)}
+    .brand-rail-inner{display:grid;grid-template-columns:170px 1fr;align-items:center;gap:34px;min-height:112px}
+    .brand-rail-label{font-size:.77rem;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);font-weight:800}
+    .brand-list{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .brand-chip{
+      min-height:50px;display:grid;place-items:center;border-left:1px solid var(--line);
+      color:#2c333b;font-weight:900;font-size:.9rem;letter-spacing:.02em;text-align:center;padding:6px
+    }
+
+    /* Categories */
+    .category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .category-card{
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+      padding:25px;min-height:245px;display:flex;flex-direction:column;transition:.22s ease;position:relative;overflow:hidden
+    }
+    .category-card::after{
+      content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-55px;bottom:-55px;
+      border:25px solid rgba(217,37,37,.055);transition:.25s
+    }
+    .category-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#cfd5db}
+    .category-card:hover::after{transform:scale(1.25)}
+    .category-card h3{font-size:1.18rem;margin:20px 0 8px}
+    .category-card p{margin:0;color:var(--muted);font-size:.92rem;max-width:290px}
+    .category-card .arrow{margin-top:auto;padding-top:22px;font-weight:800;font-size:.84rem;color:var(--red)}
+
+    /* Solutions dark */
+    .dark-section{
+      background:var(--dark);color:#fff;position:relative;overflow:hidden
+    }
+    .dark-section::before{
+      content:"";position:absolute;inset:0;background:
+      linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 85%)
+    }
+    .dark-section .container{position:relative}
+    .dark-section .section-head p{color:#98a4b1}
+    .solution-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:18px}
+    .solution-main{
+      border:1px solid #26313d;border-radius:26px;padding:34px;min-height:390px;
+      background:linear-gradient(135deg,#141c26 0%,#0d131b 100%);position:relative;overflow:hidden
+    }
+    .solution-main h3{font-size:clamp(2rem,3.8vw,3.3rem);line-height:1.03;letter-spacing:-.04em;max-width:650px;margin:80px 0 18px}
+    .solution-main p{max-width:600px;color:#a3adb9}
+    .solution-main .line-art{
+      position:absolute;right:-40px;top:-20px;width:330px;height:330px;border:1px solid #293644;border-radius:50%
+    }
+    .solution-main .line-art::before,.solution-main .line-art::after{
+      content:"";position:absolute;border:1px solid #293644;border-radius:50%;inset:45px
+    }
+    .solution-main .line-art::after{inset:95px}
+    .solution-side{display:grid;gap:18px}
+    .solution-mini{
+      border:1px solid #26313d;border-radius:22px;padding:26px;background:#111821;min-height:186px
+    }
+    .solution-mini h3{margin:34px 0 8px;font-size:1.2rem}
+    .solution-mini p{margin:0;color:#91a0ae;font-size:.9rem}
+
+    /* Process */
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+    .process-step{padding:30px;min-height:240px;border-right:1px solid var(--line)}
+    .process-step:last-child{border-right:0}
+    .step-no{font-size:.75rem;font-weight:900;color:var(--red);letter-spacing:.12em}
+    .process-step h3{margin:48px 0 10px;font-size:1.12rem}
+    .process-step p{margin:0;color:var(--muted);font-size:.9rem}
+
+    /* CTA */
+    .cta-wrap{padding:0 0 94px}
+    .cta{
+      background:var(--red);color:#fff;border-radius:30px;padding:48px;
+      display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+      position:relative;overflow:hidden
+    }
+    .cta::after{
+      content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:70px solid rgba(255,255,255,.08);right:-150px;top:-175px
+    }
+    .cta h2{font-size:clamp(2rem,4vw,3.7rem);line-height:1;letter-spacing:-.045em;margin:8px 0 12px}
+    .cta p{margin:0;color:#ffe1e1;max-width:700px}
+    .cta .btn{position:relative;z-index:2;min-height:52px;background:#fff;color:var(--ink);padding-inline:22px}
+    .cta .eyebrow{color:#fff}
+    .cta .eyebrow::before{background:#fff}
+
+    /* Footer */
+    footer{background:#090e13;color:#c0c8d1;padding:58px 0 30px}
+    .footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,.65fr);gap:40px}
+    .footer-brand p{color:#7f8b98;max-width:370px;margin:18px 0 0}
+    .footer-col h4{margin:0 0 16px;color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em}
+    .footer-col a{display:block;color:#8e99a6;padding:6px 0;font-size:.89rem}
+    .footer-col a:hover{color:#fff}
+    .footer-bottom{margin-top:45px;padding-top:22px;border-top:1px solid #202833;display:flex;justify-content:space-between;gap:24px;color:#6f7a86;font-size:.78rem}
+
+    /* Drawer */
+    .mobile-drawer{
+      position:fixed;inset:0;z-index:100;background:rgba(8,12,17,.45);opacity:0;pointer-events:none;transition:.22s
+    }
+    .mobile-panel{
+      margin-left:auto;width:min(88vw,390px);height:100%;background:#fff;padding:22px;
+      transform:translateX(100%);transition:.25s ease;display:flex;flex-direction:column
+    }
+    .mobile-drawer.open{opacity:1;pointer-events:auto}
+    .mobile-drawer.open .mobile-panel{transform:translateX(0)}
+    .mobile-top{display:flex;justify-content:space-between;align-items:center}
+    .mobile-close{width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--line);font-size:1.5rem}
+    .mobile-links{display:grid;margin:34px 0}
+    .mobile-links a{padding:15px 2px;border-bottom:1px solid var(--line);font-weight:800}
+    .mobile-panel .btn{margin-top:auto}
+
+    /* Toast / search feedback */
+    .search-note{font-size:.78rem;color:#98a4b1;margin:12px 2px 0;min-height:19px}
+    .highlight{outline:2px solid var(--red);outline-offset:2px}
+
+    @media (max-width:1020px){
+      .nav-links{display:none}
+      .menu-toggle{display:block}
+      .hero-grid{grid-template-columns:1fr;gap:38px;min-height:auto;padding:64px 0}
+      .finder{max-width:680px}
+      .brand-rail-inner{grid-template-columns:1fr;padding:24px 0}
+      .brand-list{grid-template-columns:repeat(4,1fr);width:100%}
+      .category-grid{grid-template-columns:repeat(2,1fr)}
+      .solution-grid{grid-template-columns:1fr}
+      .process-grid{grid-template-columns:repeat(2,1fr)}
+      .process-step:nth-child(2){border-right:0}
+      .process-step:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .footer-grid{grid-template-columns:1.2fr 1fr 1fr}
+      .footer-grid .footer-col:last-child{grid-column:2/4}
+    }
+
+    @media (max-width:700px){
+      .container{width:min(calc(100% - 28px),var(--container))}
+      .utility{display:none}
+      .nav{height:68px;gap:12px}
+      .brand-text span{display:none}
+      .nav-actions .btn-ghost{display:none}
+      .nav-actions .btn-red{display:none}
+      .hero h1{font-size:clamp(3rem,15vw,4.8rem)}
+      .hero-grid{padding:52px 0}
+      .hero-copy{font-size:1rem}
+      .finder{padding:20px;border-radius:22px}
+      .quick-links{grid-template-columns:1fr}
+      .brand-list{grid-template-columns:repeat(2,1fr)}
+      .brand-chip{border-left:0;border-top:1px solid var(--line)}
+      .section{padding:72px 0}
+      .section-head{display:block}
+      .section-head p{margin-top:16px}
+      .category-grid{grid-template-columns:1fr}
+      .solution-main{padding:26px;min-height:360px}
+      .solution-main h3{margin-top:120px}
+      .process-grid{grid-template-columns:1fr}
+      .process-step{border-right:0;border-bottom:1px solid var(--line)!important}
+      .process-step:last-child{border-bottom:0!important}
+      .cta-wrap{padding-bottom:72px}
+      .cta{grid-template-columns:1fr;padding:32px 26px;border-radius:24px}
+      .cta .btn{justify-self:start}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .footer-brand{grid-column:1/3}
+      .footer-grid .footer-col:last-child{grid-column:auto}
+      .footer-bottom{display:block}
+      .footer-bottom span{display:block;margin-top:8px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="utility">
+      <div class="container">
+        <div><strong>Y.O. General 1983</strong> · สินค้าอุตสาหกรรมและงานสนับสนุนด้านวิศวกรรม</div>
+        <div class="utility-right">
+          <span>สำหรับฝ่ายจัดซื้อและทีมวิศวกรรม</span>
+          <span>กรุงเทพฯ ประเทศไทย</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Y.O. General 1983 home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">
+          <strong>Y.O. GENERAL 1983</strong>
+          <span>INDUSTRIAL SOLUTIONS</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#products">สินค้า</a>
+        <a href="#brands">แบรนด์</a>
+        <a href="#solutions">โซลูชัน</a>
+        <a href="#services">บริการ</a>
+        <a href="#company">เกี่ยวกับเรา</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="#products">ค้นหาสินค้า</a>
+        <a class="btn btn-red" href="#contact">ขอใบเสนอราคา</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">สินค้าอุตสาหกรรม · สนับสนุนด้านวิศวกรรม</span>
+          <h1>ให้สายการผลิตของคุณ <span>เดินต่อได้อย่างมั่นใจ</span></h1>
+          <p class="hero-copy">
+            ค้นหาอุปกรณ์อุตสาหกรรม สินค้า Automation และการสนับสนุนทางเทคนิค
+            สำหรับงานซ่อมบำรุง อัปเกรดเครื่องจักร และโครงการในสายการผลิต
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-red" href="#products">
+              ดูสินค้าทั้งหมด
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#solutions">โซลูชันด้านวิศวกรรม</a>
+          </div>
+
+          <div class="hero-trust">
+            <span class="pill"><span class="dot"></span> ให้คำแนะนำด้านเทคนิค</span>
+            <span class="pill">สินค้าเกรดอุตสาหกรรม</span>
+            <span class="pill">ระบบขอใบเสนอราคาแบบ B2B</span>
+          </div>
+        </div>
+
+        <aside class="finder" aria-label="ค้นหาสินค้า">
+          <div class="finder-top">
+            <div>
+              <div class="finder-label">ค้นหาสินค้า</div>
+              <strong>ค้นหาจากประเภทสินค้า แบรนด์ หรือรุ่น</strong>
+            </div>
+            <div class="icon" style="background:#171f29;border-color:#293440;color:#fff">
+              <svg viewBox="0 0 24 24"><path d="m21 21-4.4-4.4"/><circle cx="11" cy="11" r="7"/></svg>
+            </div>
+          </div>
+
+          <div class="finder-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+            <input id="heroSearch" type="search" placeholder="เช่น Solenoid Valve, Mitsubishi, Sensor…" aria-label="Search products" />
+            <button id="heroSearchBtn" type="button">ค้นหา</button>
+          </div>
+          <div class="search-note" id="searchNote">ลองค้นหา “automation”, “valve”, “pneumatic” หรือชื่อแบรนด์</div>
+
+          <div class="quick-links">
+            <a class="quick-link" href="#products" data-query="automation"><span>ระบบอัตโนมัติและการควบคุม</span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5l8 7-8 7"/></svg></a>
+            <a class="quick-link" href="#products" data-query="pneumatic"><span>นิวเมติก</span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5l8 7-8 7"/></svg></a>
+            <a class="quick-link" href="#products" data-query="valve"><span>วาล์วและระบบควบคุมการไหล</span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5l8 7-8 7"/></svg></a>
+            <a class="quick-link" href="#products" data-query="sensor"><span>เซนเซอร์และเครื่องมือวัด</span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5l8 7-8 7"/></svg></a>
+          </div>
+
+          <div class="finder-foot">
+            ออกแบบสำหรับวิศวกร ทีมซ่อมบำรุง และฝ่ายจัดซื้อ เพื่อให้ค้นหาสินค้าได้เร็วและง่ายขึ้น
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="brand-rail" id="brands">
+      <div class="container brand-rail-inner">
+        <div class="brand-rail-label">แบรนด์สินค้าที่เราคัดสรร</div>
+        <div class="brand-list" aria-label="Selected brands">
+          <div class="brand-chip">MITSUBISHI ELECTRIC</div>
+          <div class="brand-chip">PARKER</div>
+          <div class="brand-chip">KITZ</div>
+          <div class="brand-chip">YOSHITAKE</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">หมวดหมู่สินค้า</span>
+            <h2>ค้นหาสิ่งที่สายการผลิตของคุณต้องการ</h2>
+          </div>
+          <p>
+            โครงสร้างที่เน้นการค้นหาสินค้าเป็นหลัก เพื่อช่วยให้ทีมวิศวกรรมและฝ่ายจัดซื้อ
+            ไปจากความต้องการสู่หมวดสินค้าที่เหมาะสมได้รวดเร็วขึ้น
+          </p>
+        </div>
+
+        <div class="category-grid" id="categoryGrid">
+          <article class="category-card" data-search="automation control plc inverter servo hmi mitsubishi electric">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h4M7 12h10M7 16h7"/></svg>
+            </div>
+            <h3>ระบบอัตโนมัติและการควบคุม</h3>
+            <p>PLC, HMI, Inverter, Servo และอุปกรณ์ควบคุมสำหรับระบบอัตโนมัติของเครื่องจักรและโรงงาน</p>
+            <a class="arrow" href="#contact">ดูหมวดสินค้า →</a>
+          </article>
+
+          <article class="category-card" data-search="pneumatic pneumatics hydraulic cylinder solenoid air valve parker">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M4 12h6M14 12h6M10 7v10M14 7v10"/><path d="M7 8l3 4-3 4M17 8l-3 4 3 4"/></svg>
+            </div>
+            <h3>นิวเมติก & Hydraulics</h3>
+            <p>อุปกรณ์ควบคุมการเคลื่อนที่และแรงดันสำหรับเครื่องจักรอุตสาหกรรมและระบบการผลิต</p>
+            <a class="arrow" href="#contact">ดูหมวดสินค้า →</a>
+          </article>
+
+          <article class="category-card" data-search="valve flow steam pressure regulator kitz yoshitake">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M3 12h5M16 12h5"/><path d="M8 8l8 8M16 8l-8 8"/><path d="M12 5V3M9 3h6"/></svg>
+            </div>
+            <h3>วาล์วและระบบควบคุมการไหล Control</h3>
+            <p>วาล์วอุตสาหกรรม เรกูเลเตอร์ และอุปกรณ์ควบคุมการไหลสำหรับระบบ Utility และ Process</p>
+            <a class="arrow" href="#contact">ดูหมวดสินค้า →</a>
+          </article>
+
+          <article class="category-card" data-search="sensor sensors instrument instruments temperature pressure proximity measurement">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+            </div>
+            <h3>เซนเซอร์และเครื่องมือวัด</h3>
+            <p>อุปกรณ์ตรวจจับ วัดค่า และมอนิเตอร์สำหรับเครื่องจักร ระบบ Utility และระบบควบคุมกระบวนการ</p>
+            <a class="arrow" href="#contact">ดูหมวดสินค้า →</a>
+          </article>
+
+          <article class="category-card" data-search="mechanical bearing coupling transmission component components maintenance">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 5V2M12 22v-3M5 12H2M22 12h-3"/></svg>
+            </div>
+            <h3>อุปกรณ์เครื่องกล</h3>
+            <p>อุปกรณ์เครื่องกลสำหรับงานเปลี่ยนอะไหล่ ซ่อมบำรุง และปรับปรุงประสิทธิภาพเครื่องจักร</p>
+            <a class="arrow" href="#contact">ดูหมวดสินค้า →</a>
+          </article>
+
+          <article class="category-card" data-search="service repair retrofit maintenance engineering solution support">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M14.5 6.5a4 4 0 0 0-5 5L3 18l3 3 6.5-6.5a4 4 0 0 0 5-5l-3 3-3-3 3-3Z"/></svg>
+            </div>
+            <h3>งานซ่อมบำรุงและบริการ</h3>
+            <p>สนับสนุนงานเปลี่ยนอะไหล่ ตรวจสอบปัญหา ปรับปรุงระบบ และโครงการด้านวิศวกรรม</p>
+            <a class="arrow" href="#services">ดูบริการของเรา →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark-section" id="solutions">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">โซลูชันด้านวิศวกรรม</span>
+            <h2>มากกว่าการจำหน่ายอุปกรณ์</h2>
+          </div>
+          <p>
+            เว็บไซต์ถูกออกแบบตามขั้นตอนการจัดซื้อแบบ B2B จริง ตั้งแต่ระบุความต้องการ
+            คัดเลือกโซลูชัน ตรวจสอบความเหมาะสม ไปจนถึงขอใบเสนอราคา
+          </p>
+        </div>
+
+        <div class="solution-grid">
+          <article class="solution-main">
+            <div class="line-art" aria-hidden="true"></div>
+            <span class="pill" style="background:#151e28;border-color:#2a3541;color:#dbe3eb">
+              <span class="dot"></span> ขั้นตอนงานวิศวกรรม
+            </span>
+            <h3>จากโจทย์หน้างานสู่การเลือกสินค้าที่ใช้งานได้จริง</h3>
+            <p>
+              ใช้ข้อมูลหมวดสินค้า รุ่น และลักษณะการใช้งาน เพื่อช่วยลดความคลาดเคลื่อนก่อนขอราคา
+              และทำให้การสื่อสารด้านเทคนิคชัดเจนขึ้น
+            </p>
+          </article>
+
+          <div class="solution-side">
+            <article class="solution-mini">
+              <div class="icon" style="background:#161f29;border-color:#293440;color:#fff">
+                <svg viewBox="0 0 24 24"><path d="M4 19V5h16v14H4Z"/><path d="M8 15l3-3 2 2 3-4"/></svg>
+              </div>
+              <h3>อัปเกรดระบบ Automation</h3>
+              <p>แนวทางเปลี่ยนและอัปเกรดอุปกรณ์สำหรับเครื่องจักรและระบบการผลิต</p>
+            </article>
+
+            <article class="solution-mini">
+              <div class="icon" style="background:#161f29;border-color:#293440;color:#fff">
+                <svg viewBox="0 0 24 24"><path d="M4 12h16"/><path d="M12 4v16"/><circle cx="12" cy="12" r="8"/></svg>
+              </div>
+              <h3>ให้คำแนะนำตามการใช้งาน</h3>
+              <p>จัดข้อมูลทางเทคนิคให้เหมาะกับเครื่องจักร ของไหล และสภาวะการทำงานของคุณ</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">ขั้นตอนการทำงาน</span>
+            <h2>ขั้นตอนการจัดซื้อ B2B ที่ชัดเจนกว่า</h2>
+          </div>
+          <p>ออกแบบให้การสอบถามข้อมูลครบถ้วนขึ้น และลดการสื่อสารที่ต้องย้อนกลับไปมา</p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-step">
+            <div class="step-no">01 / ค้นหา</div>
+            <h3>ค้นหาหมวดสินค้า</h3>
+            <p>เริ่มจากประเภทสินค้า แบรนด์ รุ่น หรือการใช้งาน</p>
+          </article>
+          <article class="process-step">
+            <div class="step-no">02 / ระบุความต้องการ</div>
+            <h3>แจ้งความต้องการของคุณ</h3>
+            <p>แจ้งจำนวน สเปก และเงื่อนไขการใช้งานเท่าที่มี</p>
+          </article>
+          <article class="process-step">
+            <div class="step-no">03 / ตรวจสอบ</div>
+            <h3>ตรวจสอบความเหมาะสม</h3>
+            <p>ตรวจสอบความเหมาะสมทางเทคนิคก่อนเข้าสู่ขั้นตอนเสนอราคา</p>
+          </article>
+          <article class="process-step">
+            <div class="step-no">04 / เสนอราคา</div>
+            <h3>เข้าสู่ขั้นตอนขอใบเสนอราคา</h3>
+            <p>รับข้อมูลเชิงพาณิชย์บนพื้นฐานของความต้องการสินค้าที่ชัดเจนขึ้น</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-wrap" id="contact">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <span class="eyebrow">ขอใบเสนอราคา</span>
+            <h2>มีรุ่นสินค้า หรือมีความต้องการสำหรับโครงการอยู่แล้วหรือไม่?</h2>
+            <p>
+              ส่งรุ่นสินค้า จำนวน และรายละเอียดการใช้งานมาให้เรา เพื่อให้ทีมงานสามารถตรวจสอบและจัดทำใบเสนอราคาได้รวดเร็วขึ้น
+            </p>
+          </div>
+          <button class="btn" id="quoteButton" type="button">เตรียมข้อมูลสอบถาม →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="company">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top" style="color:#fff">
+            <span class="brand-mark"></span>
+            <span class="brand-text"><strong>Y.O. GENERAL 1983</strong><span style="color:#687583">INDUSTRIAL SOLUTIONS</span></span>
+          </a>
+          <p>
+            ศูนย์รวมสินค้าอุตสาหกรรมและข้อมูลเชิงวิศวกรรม พร้อมเส้นทางที่ชัดเจนตั้งแต่ค้นหาสินค้าไปจนถึงขอใบเสนอราคา
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>สินค้า</h4>
+          <a href="#products">Automation</a>
+          <a href="#products">นิวเมติก</a>
+          <a href="#products">วาล์ว</a>
+          <a href="#products">เครื่องมือวัด</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>เกี่ยวกับเรา</h4>
+          <a href="#solutions">โซลูชัน</a>
+          <a href="#services">บริการ</a>
+          <a href="#brands">แบรนด์</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>สำหรับทีมของคุณ</h4>
+          <a href="#products">ค้นหาสินค้า</a>
+          <a href="#contact">ขอใบเสนอราคา</a>
+          <a href="#services">ขั้นตอนด้านเทคนิค</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="year"></span> Y.O. General 1983. สงวนลิขสิทธิ์</div>
+        <span>Frontend V2 · Responsive · Cloudflare-ready</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-panel">
+      <div class="mobile-top">
+        <strong>เมนู</strong>
+        <button class="mobile-close" id="mobileClose" aria-label="ปิดเมนู">×</button>
+      </div>
+      <nav class="mobile-links">
+        <a href="#products">สินค้า</a>
+        <a href="#brands">แบรนด์</a>
+        <a href="#solutions">โซลูชัน</a>
+        <a href="#services">บริการ</a>
+        <a href="#company">เกี่ยวกับเรา</a>
+      </nav>
+      <a class="btn btn-red" href="#contact">ขอใบเสนอราคา</a>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileClose = document.getElementById('mobileClose');
+
+    function setMenu(open){
+      mobileDrawer.classList.toggle('open', open);
+      mobileDrawer.setAttribute('aria-hidden', String(!open));
+      menuToggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
+    }
+
+    menuToggle.addEventListener('click', () => setMenu(true));
+    mobileClose.addEventListener('click', () => setMenu(false));
+    mobileDrawer.addEventListener('click', e => {
+      if(e.target === mobileDrawer) setMenu(false);
+    });
+    mobileDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    const searchInput = document.getElementById('heroSearch');
+    const searchBtn = document.getElementById('heroSearchBtn');
+    const searchNote = document.getElementById('searchNote');
+    const cards = [...document.querySelectorAll('.category-card')];
+
+    function runSearch(raw){
+      const q = (raw || '').trim().toLowerCase();
+      cards.forEach(card => card.classList.remove('highlight'));
+
+      if(!q){
+        searchNote.textContent = 'กรุณากรอกประเภทสินค้า แบรนด์ หรือรุ่นที่ต้องการค้นหา';
+        searchInput.focus();
+        return;
+      }
+
+      const matches = cards.filter(card => card.dataset.search.includes(q));
+      document.getElementById('products').scrollIntoView({behavior:'smooth'});
+
+      setTimeout(() => {
+        matches.forEach(card => card.classList.add('highlight'));
+        searchNote.textContent = matches.length
+          ? `พบ ${matches.length} หมวดสินค้าที่เกี่ยวข้องกับ “${raw.trim()}”`
+          : `ยังไม่พบหมวดสินค้าที่ตรงกับ “${raw.trim()}” — ขั้นต่อไปสามารถเชื่อมต่อกับแคตตาล็อกสินค้าจริงได้`;
+      }, 450);
+    }
+
+    searchBtn.addEventListener('click', () => runSearch(searchInput.value));
+    searchInput.addEventListener('keydown', e => {
+      if(e.key === 'Enter') runSearch(searchInput.value);
+    });
+
+    document.querySelectorAll('[data-query]').forEach(link => {
+      link.addEventListener('click', () => {
+        const q = link.dataset.query;
+        searchInput.value = q;
+        setTimeout(() => runSearch(q), 200);
+      });
+    });
+
+    document.getElementById('quoteButton').addEventListener('click', () => {
+      const subject = encodeURIComponent('สอบถามสินค้า — Y.O. General 1983');
+      const body = encodeURIComponent(
+`เรียน Y.O. General 1983
 
 ต้องการขอใบเสนอราคา
 
@@ -127,20 +747,15 @@ Email:''':'''เรียน Y.O. General 1983
 บริษัท:
 ผู้ติดต่อ:
 โทรศัพท์:
-อีเมล:''',
-    'Replace sales@yourdomain.com with the company’s confirmed sales email before launch.':'เปลี่ยน sales@yourdomain.com เป็นอีเมลฝ่ายขายจริงของบริษัทก่อนเปิดใช้งาน',
-}
+อีเมล:`
+      );
 
-for old, new in replacements.items():
-    html = html.replace(old, new)
+      // IMPORTANT:
+      // เปลี่ยน sales@yourdomain.com เป็นอีเมลฝ่ายขายจริงของบริษัทก่อนเปิดใช้งาน
+      window.location.href = `mailto:sales@yourdomain.com?subject=${subject}&body=${body}`;
+    });
 
-# Thai title/metadata in case duplicate title remained.
-html = html.replace(
-    '<title>Y.O. General 1983 — Industrial Products & Engineering Solutions</title>',
-    '<title>Y.O. General 1983 — สินค้าอุตสาหกรรมและโซลูชันด้านวิศวกรรม</title>'
-)
-
-out = Path("/mnt/data/index-th.html")
-out.write_text(html, encoding="utf-8")
-
-print(f"Created {out} ({out.stat().st_size:,} bytes)")
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
