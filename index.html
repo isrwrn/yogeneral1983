@@ -1,190 +1,146 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y.O. General Supply - Redesign Prototype</title>
-    
-    <!-- ใช้ Tailwind CSS แบบ CDN (เหมาะกับทำ Prototype) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- ฟอนต์ Kanit จาก Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- ไอคอน FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        body { font-family: 'Kanit', sans-serif; }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { primary: '#a61212', secondary: '#f43838' }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50 antialiased">
+from pathlib import Path
 
-    <!-- Topbar (แถบด้านบนสุด) -->
-    <div class="bg-primary text-white text-sm py-2 px-4 hidden md:block">
-        <div class="container mx-auto flex justify-between items-center">
-            <div><strong>บริษัท วาย.โอ.เยนเนอรัล ซัพพลาย (1983) จํากัด</strong></div>
-            <div class="space-x-4">
-                <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:sales@yogeneral1983.com" class="hover:text-gray-300"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </div>
+src = Path("/mnt/data/index.html")
+html = src.read_text(encoding="utf-8")
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="/" class="flex-shrink-0">
-                <img src="https://www.yogeneral1983.com/wp-content/uploads/2021/10/Y.O.-Logo-c-1-723x800.png" alt="Logo" class="h-16">
-            </a>
-            
-            <!-- เมนูหลัก -->
-            <nav class="hidden md:flex space-x-8 font-medium text-gray-700">
-                <a href="#" class="text-primary hover:text-secondary transition border-b-2 border-primary pb-1">หน้าแรก</a>
-                <a href="#" class="hover:text-primary transition pb-1">สินค้า <i class="fas fa-chevron-down text-xs ml-1"></i></a>
-                <a href="#" class="hover:text-primary transition pb-1">บริการ</a>
-                <a href="#" class="hover:text-primary transition pb-1">รู้จักเรา</a>
-                <a href="#" class="hover:text-primary transition pb-1">ติดต่อสอบถาม</a>
-            </nav>
+replacements = {
+    '<html lang="en">':'<html lang="th">',
+    'Industrial products, automation components and engineering support from Y.O. General 1983.':'สินค้าอุตสาหกรรม อุปกรณ์ระบบอัตโนมัติ และงานสนับสนุนด้านวิศวกรรมจาก Y.O. General 1983',
+    'Y.O. General 1983 — Industrial Products & Engineering Solutions':'Y.O. General 1983 — สินค้าอุตสาหกรรมและโซลูชันด้านวิศวกรรม',
+    'Find industrial components, automation products and technical support for your operation.':'ค้นหาสินค้าอุตสาหกรรม อุปกรณ์ Automation และบริการสนับสนุนทางเทคนิคสำหรับโรงงานและสายการผลิตของคุณ',
+    'Industrial products & engineering support':'สินค้าอุตสาหกรรมและงานสนับสนุนด้านวิศวกรรม',
+    'For procurement & engineering teams':'สำหรับฝ่ายจัดซื้อและทีมวิศวกรรม',
+    'Bangkok, Thailand':'กรุงเทพฯ ประเทศไทย',
+    'Y.O. GENERAL 1983':'Y.O. GENERAL 1983',
+    'INDUSTRIAL SOLUTIONS':'INDUSTRIAL SOLUTIONS',
+    '>Products<':'>สินค้า<',
+    '>Brands<':'>แบรนด์<',
+    '>Solutions<':'>โซลูชัน<',
+    '>Services<':'>บริการ<',
+    '>Company<':'>เกี่ยวกับเรา<',
+    'Find a product':'ค้นหาสินค้า',
+    'Request a quote':'ขอใบเสนอราคา',
+    'Industrial supply · engineering support':'สินค้าอุตสาหกรรม · สนับสนุนด้านวิศวกรรม',
+    'Keep your operation ':'ให้สายการผลิตของคุณ ',
+    '<span>moving.</span>':'<span>เดินต่อได้อย่างมั่นใจ</span>',
+    'Find industrial components, automation products and practical technical support\n            for maintenance, upgrades and production projects.':'ค้นหาอุปกรณ์อุตสาหกรรม สินค้า Automation และการสนับสนุนทางเทคนิค\n            สำหรับงานซ่อมบำรุง อัปเกรดเครื่องจักร และโครงการในสายการผลิต',
+    'Explore products':'ดูสินค้าทั้งหมด',
+    'Engineering solutions':'โซลูชันวิศวกรรม',
+    'Technical product support':'ให้คำแนะนำด้านเทคนิค',
+    'Industrial-grade components':'สินค้าเกรดอุตสาหกรรม',
+    'B2B quotation workflow':'ระบบขอใบเสนอราคาแบบ B2B',
+    'Product finder':'ค้นหาสินค้า',
+    'Search by product, brand or model':'ค้นหาจากประเภทสินค้า แบรนด์ หรือรุ่น',
+    'e.g. solenoid valve, Mitsubishi, sensor…':'เช่น Solenoid Valve, Mitsubishi, Sensor…',
+    '>Search<':'>ค้นหา<',
+    'Try searching “automation”, “valve”, “pneumatic” or a brand.':'ลองค้นหา “automation”, “valve”, “pneumatic” หรือชื่อแบรนด์',
+    'Automation & Control':'ระบบอัตโนมัติและการควบคุม',
+    'Pneumatics':'นิวเมติก',
+    'Valves & Flow':'วาล์วและระบบควบคุมการไหล',
+    'Sensors & Instruments':'เซนเซอร์และเครื่องมือวัด',
+    'Built for engineers, maintenance teams and procurement — fewer clicks, faster product discovery.':'ออกแบบสำหรับวิศวกร ทีมซ่อมบำรุง และฝ่ายจัดซื้อ เพื่อให้ค้นหาสินค้าได้เร็วและง่ายขึ้น',
+    'Selected product brands':'แบรนด์สินค้าที่เราคัดสรร',
+    'Product categories':'หมวดหมู่สินค้า',
+    'Find what your line needs.':'ค้นหาสิ่งที่สายการผลิตของคุณต้องการ',
+    'A product-first structure designed to help engineering and purchasing teams\n            move quickly from requirement to the right category.':'โครงสร้างที่เน้นการค้นหาสินค้าเป็นหลัก เพื่อช่วยให้ทีมวิศวกรรมและฝ่ายจัดซื้อ\n            ไปจากความต้องการสู่หมวดสินค้าที่เหมาะสมได้รวดเร็วขึ้น',
+    'Automation & Control':'ระบบอัตโนมัติและการควบคุม',
+    'PLC, HMI, inverter, servo and control components for machine and factory automation.':'PLC, HMI, Inverter, Servo และอุปกรณ์ควบคุมสำหรับระบบอัตโนมัติของเครื่องจักรและโรงงาน',
+    'View category →':'ดูหมวดสินค้า →',
+    'Pneumatics & Hydraulics':'นิวเมติกและไฮดรอลิก',
+    'Motion and pressure-control components for industrial machines and production systems.':'อุปกรณ์ควบคุมการเคลื่อนที่และแรงดันสำหรับเครื่องจักรอุตสาหกรรมและระบบการผลิต',
+    'Valves & Flow Control':'วาล์วและระบบควบคุมการไหล',
+    'Industrial valves, regulators and flow-control products for utilities and process systems.':'วาล์วอุตสาหกรรม เรกูเลเตอร์ และอุปกรณ์ควบคุมการไหลสำหรับระบบ Utility และ Process',
+    'Sensors & Instruments':'เซนเซอร์และเครื่องมือวัด',
+    'Sensing, measurement and monitoring devices for machines, utilities and process control.':'อุปกรณ์ตรวจจับ วัดค่า และมอนิเตอร์สำหรับเครื่องจักร ระบบ Utility และระบบควบคุมกระบวนการ',
+    'Mechanical Components':'อุปกรณ์เครื่องกล',
+    'Supporting machine components for replacement, maintenance and equipment improvement work.':'อุปกรณ์เครื่องกลสำหรับงานเปลี่ยนอะไหล่ ซ่อมบำรุง และปรับปรุงประสิทธิภาพเครื่องจักร',
+    'Maintenance & Service':'งานซ่อมบำรุงและบริการ',
+    'Practical support for replacement, troubleshooting, system improvement and engineering projects.':'สนับสนุนงานเปลี่ยนอะไหล่ ตรวจสอบปัญหา ปรับปรุงระบบ และโครงการด้านวิศวกรรม',
+    'Explore services →':'ดูบริการของเรา →',
+    'Engineering solutions':'โซลูชันด้านวิศวกรรม',
+    'More than component supply.':'มากกว่าการจำหน่ายอุปกรณ์',
+    'The site is structured around the real B2B journey: identify a requirement,\n            shortlist a solution, verify fit and move to quotation.':'เว็บไซต์ถูกออกแบบตามขั้นตอนการจัดซื้อแบบ B2B จริง ตั้งแต่ระบุความต้องการ\n            คัดเลือกโซลูชัน ตรวจสอบความเหมาะสม ไปจนถึงขอใบเสนอราคา',
+    'Engineering workflow':'ขั้นตอนงานวิศวกรรม',
+    'From problem statement to practical product selection.':'จากโจทย์หน้างานสู่การเลือกสินค้าที่ใช้งานได้จริง',
+    'Use category, model and application context to reduce ambiguity before quotation\n              and make technical communication clearer for both sides.':'ใช้ข้อมูลหมวดสินค้า รุ่น และลักษณะการใช้งาน เพื่อช่วยลดความคลาดเคลื่อนก่อนขอราคา\n              และทำให้การสื่อสารด้านเทคนิคชัดเจนขึ้น',
+    'Automation upgrades':'อัปเกรดระบบ Automation',
+    'Component replacement and upgrade paths for production equipment.':'แนวทางเปลี่ยนและอัปเกรดอุปกรณ์สำหรับเครื่องจักรและระบบการผลิต',
+    'Application support':'ให้คำแนะนำตามการใช้งาน',
+    'Organize technical information around your machine, medium and operating conditions.':'จัดข้อมูลทางเทคนิคให้เหมาะกับเครื่องจักร ของไหล และสภาวะการทำงานของคุณ',
+    'How we work':'ขั้นตอนการทำงาน',
+    'A clearer B2B buying journey.':'ขั้นตอนการจัดซื้อ B2B ที่ชัดเจนกว่า',
+    'Designed to make enquiries more complete and reduce unnecessary back-and-forth.':'ออกแบบให้การสอบถามข้อมูลครบถ้วนขึ้น และลดการสื่อสารที่ต้องย้อนกลับไปมา',
+    '01 / SEARCH':'01 / ค้นหา',
+    'Find the category':'ค้นหาหมวดสินค้า',
+    'Start with product type, brand, model number or application.':'เริ่มจากประเภทสินค้า แบรนด์ รุ่น หรือการใช้งาน',
+    '02 / DEFINE':'02 / ระบุความต้องการ',
+    'Share your requirement':'แจ้งความต้องการของคุณ',
+    'Add quantity, specification and operating context where available.':'แจ้งจำนวน สเปก และเงื่อนไขการใช้งานเท่าที่มี',
+    '03 / VERIFY':'03 / ตรวจสอบ',
+    'Confirm suitability':'ตรวจสอบความเหมาะสม',
+    'Review technical fit before the commercial quotation stage.':'ตรวจสอบความเหมาะสมทางเทคนิคก่อนเข้าสู่ขั้นตอนเสนอราคา',
+    '04 / QUOTE':'04 / เสนอราคา',
+    'Move to quotation':'เข้าสู่ขั้นตอนขอใบเสนอราคา',
+    'Receive the commercial response with a clearer product requirement.':'รับข้อมูลเชิงพาณิชย์บนพื้นฐานของความต้องการสินค้าที่ชัดเจนขึ้น',
+    'Have a model number or project requirement?':'มีรุ่นสินค้า หรือมีความต้องการสำหรับโครงการอยู่แล้วหรือไม่?',
+    'Send the product model, quantity and application details. Add your real sales\n              contact to this button before production launch.':'ส่งรุ่นสินค้า จำนวน และรายละเอียดการใช้งานมาให้เรา เพื่อให้ทีมงานสามารถตรวจสอบและจัดทำใบเสนอราคาได้รวดเร็วขึ้น',
+    'Prepare enquiry →':'เตรียมข้อมูลสอบถาม →',
+    'Industrial product discovery, engineering-oriented information architecture\n            and a cleaner path from requirement to quotation.':'ศูนย์รวมสินค้าอุตสาหกรรมและข้อมูลเชิงวิศวกรรม พร้อมเส้นทางที่ชัดเจนตั้งแต่ค้นหาสินค้าไปจนถึงขอใบเสนอราคา',
+    '<h4>Products</h4>':'<h4>สินค้า</h4>',
+    '<h4>Company</h4>':'<h4>บริษัท</h4>',
+    '<h4>For your team</h4>':'<h4>สำหรับทีมของคุณ</h4>',
+    '>Automation<':'>Automation<',
+    '>Pneumatics<':'>Pneumatics<',
+    '>Valves<':'>วาล์ว<',
+    '>Instruments<':'>เครื่องมือวัด<',
+    'Technical workflow':'ขั้นตอนด้านเทคนิค',
+    'All rights reserved.':'สงวนลิขสิทธิ์',
+    'Frontend V2 · Static HTML · Responsive · Cloudflare-ready':'Frontend V2 · Responsive · Cloudflare-ready',
+    '>Menu<':'>เมนู<',
+    'Open menu':'เปิดเมนู',
+    'Close menu':'ปิดเมนู',
+    'Enter a product type, brand or model keyword.':'กรุณากรอกประเภทสินค้า แบรนด์ หรือรุ่นที่ต้องการค้นหา',
+    'Found ${matches.length} relevant ${matches.length === 1 ? \'category\' : \'categories\'} for “${raw.trim()}”.':'พบ ${matches.length} หมวดสินค้าที่เกี่ยวข้องกับ “${raw.trim()}”',
+    'No category match for “${raw.trim()}” yet — connect this UI to your real product catalog next.':'ยังไม่พบหมวดสินค้าที่ตรงกับ “${raw.trim()}” — ขั้นต่อไปสามารถเชื่อมต่อกับแคตตาล็อกสินค้าจริงได้',
+    'Product enquiry — Y.O. General 1983':'สอบถามสินค้า — Y.O. General 1983',
+    '''Hello Y.O. General 1983,
 
-            <!-- ช่องค้นหา -->
-            <div class="hidden md:flex items-center">
-                <div class="relative flex">
-                    <input type="text" placeholder="ค้นหาสินค้า / รหัส..." class="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary w-48 text-sm">
-                    <button class="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-r-md border border-l-0 border-gray-300 text-gray-600"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </div>
-    </header>
+I would like to request a quotation.
 
-    <!-- Hero Section (แบนเนอร์หลัก) -->
-    <section class="relative bg-gray-900 text-white">
-        <!-- ภาพพื้นหลัง -->
-        <div class="absolute inset-0 bg-[url('https://www.yogeneral1983.com/wp-content/uploads/2021/07/Pic.-Service-tab-c-scaled.jpg')] bg-cover bg-center opacity-40"></div>
-        
-        <div class="relative container mx-auto px-4 py-24 flex flex-col md:flex-row items-center z-10">
-            <!-- ข้อความโปรโมท -->
-            <div class="md:w-1/2 space-y-6">
-                <h1 class="text-4xl md:text-5xl font-semibold leading-tight drop-shadow-md">
-                    บริการด้วยประสบการณ์<br>กว่า <span class="text-secondary font-bold">30 ปี</span>
-                </h1>
-                <ul class="space-y-3 text-lg text-gray-100 mt-6">
-                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-3"></i> รับซ่อมอุปกรณ์ไฟฟ้าอิเล็กทรอนิกส์อุตสาหกรรม (Inverter, Servo, PLC)</li>
-                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-3"></i> รับออกแบบและติดตั้งระบบควบคุมอัตโนมัติไฟฟ้าในโรงงาน</li>
-                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-3"></i> รับเหมาเดินระบบสายไฟฟ้า และระบบท่ออุตสาหกรรมครบวงจร</li>
-                </ul>
-                <div class="pt-6">
-                    <a href="#" class="bg-primary hover:bg-red-800 text-white px-8 py-3 rounded-full font-medium transition shadow-lg inline-block">ดูรายละเอียดบริการ</a>
-                </div>
-            </div>
-            
-            <!-- ฟอร์มติดต่อแบบรวดเร็ว (Prototype) -->
-            <div class="md:w-1/3 mt-12 md:mt-0 md:ml-auto w-full">
-                <div class="bg-white text-gray-800 p-8 rounded-xl shadow-2xl">
-                    <h3 class="text-2xl font-semibold mb-6 text-center text-primary border-b pb-3">ให้เราติดต่อกลับ</h3>
-                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('ฟอร์มตัวอย่างสำหรับ Prototype กดส่งสำเร็จ!');">
-                        <input type="text" placeholder="ชื่อ - นามสกุล" class="w-full border px-4 py-3 rounded-md bg-gray-50 focus:ring-1 focus:ring-primary outline-none">
-                        <input type="tel" placeholder="เบอร์โทรศัพท์" class="w-full border px-4 py-3 rounded-md bg-gray-50 focus:ring-1 focus:ring-primary outline-none">
-                        <textarea rows="3" placeholder="ระบุสิ่งที่ต้องการสอบถาม..." class="w-full border px-4 py-3 rounded-md bg-gray-50 focus:ring-1 focus:ring-primary outline-none"></textarea>
-                        <button class="w-full bg-primary hover:bg-red-800 text-white py-3 rounded-md font-medium transition shadow-md">ส่งข้อมูล</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+Product / Model:
+Quantity:
+Application:
+Specifications / Notes:
 
-    <!-- Product Categories Section -->
-    <section class="py-16 container mx-auto px-4 bg-gray-50">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-semibold text-gray-800">หมวดหมู่สินค้าแนะนำ</h2>
-            <div class="w-16 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <!-- หมวดหมู่ที่ 1 -->
-            <a href="#" class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col">
-                <div class="h-48 bg-white overflow-hidden relative p-4 flex items-center justify-center">
-                    <img src="https://www.yogeneral1983.com/wp-content/uploads/2021/02/MITSUBISHI_D700_22-300x300.jpg" class="h-full object-contain group-hover:scale-110 transition duration-500">
-                </div>
-                <div class="p-5 text-center bg-gray-50 border-t border-gray-100 flex-grow">
-                    <h3 class="font-medium text-gray-800 group-hover:text-primary transition">Automation & Inverter</h3>
-                    <p class="text-sm text-gray-500 mt-1">42 Products</p>
-                </div>
-            </a>
-            
-            <!-- หมวดหมู่ที่ 2 -->
-            <a href="#" class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col">
-                <div class="h-48 bg-white overflow-hidden relative p-4 flex items-center justify-center">
-                    <img src="https://www.yogeneral1983.com/wp-content/uploads/2021/06/MITSUBISHI-MOTOR-SUPER-LINE-K-SERIES-300x300.jpg" class="h-full object-contain group-hover:scale-110 transition duration-500">
-                </div>
-                <div class="p-5 text-center bg-gray-50 border-t border-gray-100 flex-grow">
-                    <h3 class="font-medium text-gray-800 group-hover:text-primary transition">Motor</h3>
-                    <p class="text-sm text-gray-500 mt-1">4 Products</p>
-                </div>
-            </a>
-            
-            <!-- หมวดหมู่ที่ 3 -->
-            <a href="#" class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col">
-                <div class="h-48 bg-white overflow-hidden relative p-4 flex items-center justify-center">
-                    <img src="https://www.yogeneral1983.com/wp-content/uploads/2021/06/KITZ-Cast-Iron-Valves-300x300.jpg" class="h-full object-contain group-hover:scale-110 transition duration-500">
-                </div>
-                <div class="p-5 text-center bg-gray-50 border-t border-gray-100 flex-grow">
-                    <h3 class="font-medium text-gray-800 group-hover:text-primary transition">Industrial Valves</h3>
-                    <p class="text-sm text-gray-500 mt-1">11 Products</p>
-                </div>
-            </a>
-            
-            <!-- หมวดหมู่ที่ 4 -->
-            <a href="#" class="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col">
-                <div class="h-48 bg-white overflow-hidden relative p-4 flex items-center justify-center">
-                    <img src="https://www.yogeneral1983.com/wp-content/uploads/2021/05/Parker-7321B_7322B-300x300.jpg" class="h-full object-contain group-hover:scale-110 transition duration-500">
-                </div>
-                <div class="p-5 text-center bg-gray-50 border-t border-gray-100 flex-grow">
-                    <h3 class="font-medium text-gray-800 group-hover:text-primary transition">Solenoid Valves</h3>
-                    <p class="text-sm text-gray-500 mt-1">19 Products</p>
-                </div>
-            </a>
-        </div>
-    </section>
+Company:
+Contact person:
+Phone:
+Email:''':'''เรียน Y.O. General 1983
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12 border-t-4 border-primary">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            <div>
-                <!-- ดึงโลโก้เดิมมาปรับให้เป็นสีขาวด้วย CSS Filter -->
-                <img src="https://www.yogeneral1983.com/wp-content/uploads/2021/10/Y.O.-Logo-c-1-723x800.png" class="h-20 mb-4 mx-auto md:mx-0 filter brightness-0 invert opacity-80">
-                <p class="text-sm text-gray-400 leading-relaxed">ตัวแทนจำหน่ายสินค้าอุตสาหกรรม และระบบ Automation ชั้นนำ พร้อมบริการออกแบบและติดตั้งระบบควบคุมครบวงจร</p>
-            </div>
-            <div>
-                <h4 class="text-white text-lg font-medium mb-4">ช่องทางการติดต่อ</h4>
-                <p class="mb-2 hover:text-white transition"><i class="fas fa-phone-alt mr-2 text-primary"></i> 02-216-7268-9 (สำนักงานใหญ่)</p>
-                <p class="mb-2 hover:text-white transition"><i class="fas fa-phone-alt mr-2 text-primary"></i> 02-559-3973-5 (สาขาศรีวรา)</p>
-                <p class="hover:text-white transition"><i class="fas fa-envelope mr-2 text-primary"></i> contact@yogeneral1983.com</p>
-            </div>
-            <div>
-                <h4 class="text-white text-lg font-medium mb-4">ข้อมูลเพิ่มเติม</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-primary transition">เกี่ยวกับเรา</a></li>
-                    <li><a href="#" class="hover:text-primary transition">ร่วมงานกับบริษัท</a></li>
-                    <li><a href="#" class="hover:text-primary transition">นโยบายความเป็นส่วนตัว</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="text-center text-sm text-gray-600 mt-12 border-t border-gray-800 pt-6">
-            &copy; 2024 Y.O. General Supply (1983) Co.,Ltd. All Rights Reserved. (Redesign Prototype)
-        </div>
-    </footer>
+ต้องการขอใบเสนอราคา
 
-</body>
-</html>
+สินค้า / รุ่น:
+จำนวน:
+ลักษณะการใช้งาน:
+สเปก / รายละเอียดเพิ่มเติม:
+
+บริษัท:
+ผู้ติดต่อ:
+โทรศัพท์:
+อีเมล:''',
+    'Replace sales@yourdomain.com with the company’s confirmed sales email before launch.':'เปลี่ยน sales@yourdomain.com เป็นอีเมลฝ่ายขายจริงของบริษัทก่อนเปิดใช้งาน',
+}
+
+for old, new in replacements.items():
+    html = html.replace(old, new)
+
+# Thai title/metadata in case duplicate title remained.
+html = html.replace(
+    '<title>Y.O. General 1983 — Industrial Products & Engineering Solutions</title>',
+    '<title>Y.O. General 1983 — สินค้าอุตสาหกรรมและโซลูชันด้านวิศวกรรม</title>'
+)
+
+out = Path("/mnt/data/index-th.html")
+out.write_text(html, encoding="utf-8")
+
+print(f"Created {out} ({out.stat().st_size:,} bytes)")
